@@ -2,7 +2,7 @@ var AWS = require("aws-sdk");
 // Set the region
 AWS.config.update({ region: "us-west-2" });
 
-exports.handler = async (event) => {
+exports.handler = async (event, context, callback) => {
   console.log("Received event:", JSON.stringify(event, null, 4));
 
   const message = event.Records[0].Sns.Message;
@@ -45,15 +45,6 @@ exports.handler = async (event) => {
 
   const data = await ses.sendEmail(params).promise();
   console.log(data);
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: "Email sent successfully to " + userEmail,
-        input: event,
-      },
-      null,
-      2
-    ),
-  };
+  console.log("Email sent successfully");
+  callback(null, "success");
 };
