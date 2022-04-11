@@ -36,6 +36,8 @@ const logEmailSentToDynamoDB = async (
 };
 
 exports.handler = async (event, context, callback) => {
+  console.log("New Code");
+
   console.log("Received event:", JSON.stringify(event, null, 4));
   const emailTrackingDynamoDBTable = process.env.EmailTrackingDynamoDBTable;
   const emailTrackingDynamoDBRegion = process.env.EmailTrackingDynamoDBRegion;
