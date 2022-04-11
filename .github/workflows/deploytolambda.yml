@@ -29,15 +29,8 @@ jobs:
           ls -al
 
       - name: Step 4 - Deploy the Lambda function
-        uses: aws-actions/lambda@v1
-        with:
-          function-name: ${{ env.AWS_LAMBDA_FUNCTION_NAME }}
-          runtime: nodejs14.x
-          handler: index.handler
-          zip-file: fileb://function.zip
-          timeout: 300
-          memory-size: 128
-          publish: true
+        run: |
+          aws lambda update-function-code --function-name=${{ env.AWS_LAMBDA_FUNCTION_NAME }} --zip-file=fileb://function.zip 
 
       - name: Step 5 - Cleanup
         run: |
