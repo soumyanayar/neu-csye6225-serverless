@@ -2,7 +2,7 @@ name: Lambda Function Continuous Deployment
 
 env:
   AWS_REGION: us-west-2
-  AWS_LAMBDA_FUNCTION_NAME: assignment9lambda10-LambdaFunction
+  AWS_LAMBDA_FUNCTION_NAME: csye6225-Lambda-function
 
 on:
   push:
