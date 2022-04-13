@@ -40,6 +40,7 @@ exports.handler = async (event, context, callback) => {
   const emailTrackingDynamoDBTable = process.env.EmailTrackingDynamoDBTable;
   const emailTrackingDynamoDBRegion = process.env.EmailTrackingDynamoDBRegion;
 
+  console.log("Setting AWS region to:", emailTrackingDynamoDBRegion);
   // Set the region
   AWS.config.update({ region: emailTrackingDynamoDBRegion });
 
