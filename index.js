@@ -87,15 +87,15 @@ exports.handler = async (event, context, callback) => {
           Html: {
             Charset: "UTF-8",
             Data: `<p>Hello ${first_name} ${last_name},</p>
-            <p>To verify your email address with ${domainEnvironment}.soumyanayar.me, Please click the following link: <a href="http://demo.soumyanayar.me/v1/verifyUserEmail?email=${userEmail}&token=${userToken}">Verify Email</a> or paste the following link in the browser: http://demo.soumyanayar.me/v1/verifyUserEmail?email=${userEmail}&token=${userToken}</p>`,
+            <p>To verify your email address with ${domainEnvironment}.soumyanayar.me, Please click the following link: <a href="http://${domainEnvironment}.soumyanayar.me/v1/verifyUserEmail?email=${userEmail}&token=${userToken}">Verify Email</a> or paste the following link in the browser: http://${domainEnvironment}.soumyanayar.me/v1/verifyUserEmail?email=${userEmail}&token=${userToken}</p>`,
           },
         },
         Subject: {
           Charset: "UTF-8",
-          Data: "Verify you user account for demo.soumyanayar.me",
+          Data: `Verify you user account for ${domainEnvironment}.soumyanayar.me`,
         },
       },
-      Source: "userverification@demo.soumyanayar.me",
+      Source: `userverification@${domainEnvironment}.soumyanayar.me`,
     };
 
     const data = await ses.sendEmail(params).promise();
