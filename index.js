@@ -38,7 +38,9 @@ const logEmailSentToDynamoDB = async (
 exports.handler = async (event, context, callback) => {
   console.log("Received event:", JSON.stringify(event, null, 4));
   const emailTrackingDynamoDBTable = process.env.EmailTrackingDynamoDBTable;
-  const emailTrackingDynamoDBRegion = process.env.EmailTrackingDynamoDBRegion;
+  const emailTrackingDynamoDBRegion =
+    process.env.EmailTrackingDynamoDBRegion || "us-west-2";
+  const domainEnvironment = process.env.DomainEnvironment || "demo";
 
   console.log("Setting AWS region to:", emailTrackingDynamoDBRegion);
   // Set the region
@@ -85,7 +87,7 @@ exports.handler = async (event, context, callback) => {
           Html: {
             Charset: "UTF-8",
             Data: `<p>Hello ${first_name} ${last_name},</p>
-            <p>To verify your email address with demo.soumyanayar.me, Please click the following link: <a href="http://demo.soumyanayar.me/v1/verifyUserEmail?email=${userEmail}&token=${userToken}">Verify Email</a> or paste the following link in the browser: http://demo.soumyanayar.me/v1/verifyUserEmail?email=${userEmail}&token=${userToken}</p>`,
+            <p>To verify your email address with ${domainEnvironment}.soumyanayar.me, Please click the following link: <a href="http://demo.soumyanayar.me/v1/verifyUserEmail?email=${userEmail}&token=${userToken}">Verify Email</a> or paste the following link in the browser: http://demo.soumyanayar.me/v1/verifyUserEmail?email=${userEmail}&token=${userToken}</p>`,
           },
         },
         Subject: {
