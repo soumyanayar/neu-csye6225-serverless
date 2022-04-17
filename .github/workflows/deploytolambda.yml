@@ -6,7 +6,7 @@ env:
 
 on:
   push:
-    branches: [main]
+    branches: [main, Assignment-10]
 jobs:  
   lambda_deploy:
     runs-on: ubuntu-latest
